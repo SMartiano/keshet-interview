@@ -1,37 +1,26 @@
-// invoices.mock.ts
-import { Invoice } from './invoice.model';
+import { Invoice } from "./invoice.model";
 
-export const MOCK_INVOICES: Invoice[] = [
-  {
-    id: '1',
-    supplierName: 'Acme Corp',
-    date: '2024-01-01',
-    amount: 150.5,
-    status: 'Paid',
-    invoiceName: 'Invoice 001',
-  },
-  {
-    id: '2',
-    supplierName: 'Beta Ltd',
-    date: '2024-02-15',
-    amount: 200.75,
-    status: 'Pending',
-    invoiceName: 'Invoice 002',
-  },
-  {
-    id: '3',
-    supplierName: 'Gamma Inc',
-    date: '2024-03-10',
-    amount: 300.0,
-    status: 'Overdue',
-    invoiceName: 'Invoice 003',
-  },
-  {
-    id: '4',
-    supplierName: 'Delta Co',
-    date: '2024-04-20',
-    amount: 450.25,
-    status: 'Paid',
-    invoiceName: 'Invoice 004',
-  },
-];
+export const MOCK_INVOICES: Invoice[] = Array.from({ length: 400 }, (_, index) => {
+  const id = (index + 1).toString();
+  const supplierName = `Supplier ${index % 10}`;
+  const date = `2024-${(index % 12) + 1}-${(index % 28) + 1}`;
+  const amount = Math.floor(Math.random() * 1000) + 100;
+  const total = Math.floor(amount + Math.random() * 500);
+  const paid = Math.min(amount, total);
+  const statuses = ['approved', 'pending', 'rejected'];
+  const status = statuses[index % statuses.length];
+  const invoiceName = `Invoice ${id.padStart(3, '0')}`;
+  const pdfUrl = 'https://staging.safegold.com/display/sales-invoice/da771e90-aa8f-4147-bc7c-805b73bb1283';
+  
+  return {
+    id,
+    supplierName,
+    date,
+    amount,
+    total,
+    paid,
+    status,
+    invoiceName,
+    pdfUrl
+  };
+});

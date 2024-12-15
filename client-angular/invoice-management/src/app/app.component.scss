@@ -1,0 +1,19 @@
+@import "src/styles/styles";
+
+.icon {
+  padding: 0 14px;
+}
+.spacer {
+  flex: 1 1 auto;
+}
+.mat-toolbar-row {
+  height: 90px;
+}
+
+.keshet-image {
+  width: 70px;
+}
+
+.toolbar {
+  background-color: $header-blue;
+}

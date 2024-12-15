@@ -4,5 +4,8 @@ export interface Invoice {
     supplierName: string;
     date: string;
     amount: number;
+    total: number;
+    paid: number;
     status: string;
-  }  
+    pdfUrl: string;
+}

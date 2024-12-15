@@ -1,0 +1,27 @@
+@import "src/styles/styles";
+
+.seacrh-field {
+  width: 200px;
+}
+
+.filter-container {
+  width: 100%;
+  display: flex;
+
+  justify-content: space-between;
+}
+
+.filter-elements {
+  width: fit-content;
+  background-color: white;
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.divider {
+  margin: 1rem;
+  width: 1px;
+  height: 30px;
+  background-color: #dadada;
+}

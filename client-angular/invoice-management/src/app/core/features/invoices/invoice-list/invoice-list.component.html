@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="header">
+        <!-- toggle control the display of pdf -->
+        <mat-button-toggle-group class="button-toggle-group" (change)="onTogglePdfChange($event.value)" [value]="showPdf">
+            <mat-button-toggle [value]="true">
+                <mat-icon>picture_as_pdf</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle [value]="false">
+                <mat-icon>table_rows</mat-icon>
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+        <app-invoice-filters class="filters" dir="rtl" (filterChange)="onFiltersApply($event)"></app-invoice-filters>
+    </div>
+
+    <div class="content">
+        <div>
+            <app-invoice-table [Filters]="filters" (selectedRow)="onSelectedRow($event)"></app-invoice-table>
+        </div>
+        <div *ngIf="showPdf">
+            <app-dispay-pdf [PdfUrl]="pdfUrl"></app-dispay-pdf>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,43 @@
+<div class="filter-container">
+
+  <div class="filter-elements">
+<div style="display: flex; align-items: center;    padding: 0rem 2rem;
+    gap: 0.5rem;">
+  <ng-container *ngFor="let item of statusCountInvoices; let last = last">
+    <!-- קוביית סטטוס -->
+    <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
+      <span>{{ item.count }}</span>
+      <span>{{ item.status }}</span>
+    </div>
+    <!-- פס מפריד בין האלמנטים -->
+    <span *ngIf="!last" class="divider"></span>
+  </ng-container>
+</div>
+
+
+
+  </div>
+
+  <div class="filter-elements">
+
+    <!-- Search Field -->
+    <mat-form-field class="search-field" appearance="outline" dir="rtl">
+      <input matInput type="text" [(ngModel)]="value" placeholder="חפש..." (ngModelChange)="onSearchInput($event)" />
+      <button matSuffix mat-icon-button (click)="value=''; emitFilterChanges()">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <!-- Date Range Picker -->
+    <mat-form-field appearance="outline">
+      <mat-label>הזן טווח תאריכים</mat-label>
+      <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+        <input readonly matStartDate formControlName="start" placeholder="מתאריך" />
+        <input readonly matEndDate formControlName="end" placeholder="עד תאריך" />
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+  </div>
+
+</div>

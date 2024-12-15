@@ -1,0 +1,54 @@
+<p class="empty-space"></p>
+<div dir="rtl" class="table-container" (scroll)="onScroll($event)">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>תיאור</th>
+            <td mat-cell *matCellDef="let element">
+
+                <div class="status-icon-container">
+                    <div class="icon" [ngClass]="{
+              approved: element.status === 'approved',
+              rejected: element.status === 'rejected',
+              pending: element.status === 'pending'
+            }">
+                        <mat-icon *ngIf="element.status === 'approved'">check</mat-icon>
+                        <mat-icon *ngIf="element.status === 'rejected'">close</mat-icon>
+                    </div>
+                    <div class="invoice-name-container">
+                        <span>{{ element.invoiceName }}</span>
+
+                        <span class="date">{{ element.date | date : "dd/MM/YYYY" }}</span>
+                    </div>
+                </div>
+
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="supplier">
+            <th mat-header-cell *matHeaderCellDef>ספק</th>
+            <td mat-cell *matCellDef="let element">{{ element.supplierName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="cost">
+            <th mat-header-cell *matHeaderCellDef>עלות</th>
+            <td mat-cell *matCellDef="let element">
+                <div class="amount-container">
+                    <div class="price-container">
+                        <span>{{ element.amount }} ש"ח</span>
+                        <span class="small-underline">{{ element.total }} ש"ח</span>
+                    </div>
+                    <div class="hourglass-container">
+                        <mat-icon class="hourglass-icon">hourglass_empty</mat-icon>
+                        <span class="small-underline">{{
+                            getPaymentsStatus(element)
+                            }}</span>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClick(row, dataSource)"
+            [class.selected]="row.selected"></tr>
+    </table>
+</div>

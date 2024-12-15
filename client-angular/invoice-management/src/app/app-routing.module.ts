@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: '/invoices', pathMatch: 'full' },
-  { path: 'invoices', loadChildren: () => import('./invoices/invoices.module').then(m => m.InvoicesModule) },
+  { path: 'invoices', loadChildren: () => import('./core/features/invoices/invoices.module').then(m => m.InvoicesModule) },
 ];
 
 @NgModule({

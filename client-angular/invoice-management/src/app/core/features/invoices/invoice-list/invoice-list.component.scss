@@ -1,0 +1,45 @@
+mat-button-toggle-group {
+  align-items: center;
+  border-radius: 32px;
+  width: fit-content;
+}
+
+.button-toggle-group {
+  height: 6rem;
+  display: flex;
+  flex-direction: column;
+}
+.mat-button-toggle-checked {
+  font-weight: bold;
+  background-color: #f0f2fd;
+  color: #3d53de;
+}
+
+.container {
+  padding: 4rem 2rem;
+  background-color: #e9efed;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  height: 70px;
+  position: absolute;
+  top: 75px;
+  width: calc(100vw - 4rem);
+  gap: 1.5rem;
+}
+
+.filters {
+  flex: 1;
+}
+
+.content {
+  height: 670px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  direction: rtl;
+  gap: 1rem;
+}

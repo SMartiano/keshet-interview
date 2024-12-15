@@ -4,25 +4,23 @@ import { MOCK_INVOICES } from './invoice.mock';
 
 @Injectable()
 export class InvoicesService {
+
     getInvoices(
-        page: number = 1,
-        pageSize: number = 20,
-        filters: { invoiceName?: string; startDate?: string; endDate?: string; supplierName?: string } = {},
+        page: number,
+        pageSize: number,
+        filters: { startDate?: string; endDate?: string; textSearch?: string } = {},
     ): Invoice[] {
         let filteredInvoices = MOCK_INVOICES;
 
-        if (filters.invoiceName) {
+        // filter by text search
+        if (filters.textSearch) {
             filteredInvoices = filteredInvoices.filter(invoice =>
-                invoice.invoiceName.toLowerCase().includes(filters.invoiceName.toLowerCase())
+                invoice.invoiceName.toLowerCase().includes(filters.textSearch.toLowerCase()) ||
+                invoice.supplierName.toLowerCase().includes(filters.textSearch.toLowerCase())
             );
         }
 
-        if (filters.supplierName) {
-            filteredInvoices = filteredInvoices.filter(invoice =>
-                invoice.supplierName.toLowerCase().includes(filters.supplierName.toLowerCase())
-            );
-        }
-
+        // filter by date-range
         if (filters?.startDate && filters?.endDate) {
             filteredInvoices = filteredInvoices.filter(invoice =>
                 new Date(invoice.date) >= new Date(filters.startDate) &&
@@ -30,9 +28,9 @@ export class InvoicesService {
             );
         }
 
+        // filter by scrolling area
         const startIndex = (page - 1) * pageSize;
         const endIndex = startIndex + pageSize;
-
         return filteredInvoices.slice(startIndex, endIndex);
     }
 }

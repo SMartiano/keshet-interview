@@ -5,8 +5,8 @@ import { InvoicesRoutingModule } from './invoices-routing.module';
 import { InvoiceListComponent } from './invoice-list/invoice-list.component';
 import { InvoiceFiltersComponent } from './invoice-filters/invoice-filters.component';
 import { InvoiceTableComponent } from './invoice-table/invoice-table.component';
-import { HttpClientModule } from '@angular/common/http';
 import { InvoiceService } from './invoice.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -17,7 +17,7 @@ import { InvoiceService } from './invoice.service';
   ],
   imports: [
     CommonModule,
-    HttpClientModule,
+    SharedModule,
     InvoicesRoutingModule
   ],
   providers: [InvoiceService]
