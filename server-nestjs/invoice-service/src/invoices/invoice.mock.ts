@@ -1,4 +1,8 @@
 import { Invoice } from "./invoice.model";
+import { INVOICE_STATUSES, DEFAULT_PDF_URL } from "./invoice.constants";
+
+// This array generates 400 mock invoices for testing purposes.
+// Each invoice includes details like supplier, date, status, and a PDF URL.
 
 export const MOCK_INVOICES: Invoice[] = Array.from({ length: 400 }, (_, index) => {
   const id = (index + 1).toString();
@@ -7,10 +11,9 @@ export const MOCK_INVOICES: Invoice[] = Array.from({ length: 400 }, (_, index) =
   const amount = Math.floor(Math.random() * 1000) + 100;
   const total = Math.floor(amount + Math.random() * 500);
   const paid = Math.min(amount, total);
-  const statuses = ['approved', 'pending', 'rejected'];
-  const status = statuses[index % statuses.length];
+
+  const status = INVOICE_STATUSES[index % INVOICE_STATUSES.length];
   const invoiceName = `Invoice ${id.padStart(3, '0')}`;
-  const pdfUrl = 'https://staging.safegold.com/display/sales-invoice/da771e90-aa8f-4147-bc7c-805b73bb1283';
   
   return {
     id,
@@ -21,6 +24,6 @@ export const MOCK_INVOICES: Invoice[] = Array.from({ length: 400 }, (_, index) =
     paid,
     status,
     invoiceName,
-    pdfUrl
+    pdfUrl: DEFAULT_PDF_URL
   };
 });

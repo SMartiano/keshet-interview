@@ -1,27 +1,104 @@
-# InvoiceManagement
+# **Client README**
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.
+## **Overview**
+This project provides a frontend client for managing and displaying invoice data. It features filters, infinite scrolling for large datasets, and a user-friendly interface for interacting with invoices.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## **Features**
+- Display invoice data with:
+  - Search functionality by invoice name and supplier name.
+  - Date range filtering.
+  - Dynamic status counters.
+- Infinite scrolling for seamless navigation through large datasets.
+- Display PDF for individual invoices.
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## **Technologies Used**
+- **Angular**: Framework for building dynamic web applications.
+- **RxJS**: For reactive programming.
+- **Angular Material**: For UI components and styling.
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## **Getting Started**
 
-## Running unit tests
+### **Prerequisites**
+- [Node.js](https://nodejs.org/) (version 16 or above)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### **Installation**
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/SMartiano/keshet-interview.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd client-angular/invoice-management
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-## Running end-to-end tests
+---
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## **Running the Client**
 
-## Further help
+### **Development**
+To start the client in development mode:
+```bash
+npm start
+```
+The client will run on [http://localhost:4200](http://localhost:4200).
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+---
+
+## **Project Structure**
+```plaintext
+src/
+├── app/
+│   ├── core/              # Core modules and services
+│   ├── features/          # Feature modules
+│   │   ├── invoices/      # Invoices feature
+│   │   │   ├── components/  # Invoice-related components
+│   │   │   ├── services/    # Services for invoices
+│   │   │   ├── models/      # Invoice-related models
+│   │   │   ├── invoices.module.ts # Module for invoices
+│   │   │   ├── invoices-routing.module.ts # Routing for invoices
+│   ├── shared/            # Shared components and pipes
+│   │   ├── components/display-pdf    # Component to display PDFs
+│   │   ├── pipes/safeUrl         # Pipe to safely display URLs
+│   ├── app.module.ts      # Main application module
+│   ├── app-routing.module.ts # Main routing module
+├── env/                   # Environment-specific configurations
+├── assets/images          # Static images and assets
+├── styles/styles.scss     # Global styles
+```
+
+---
+
+## **Key Decisions**
+
+### **1. Infinite Scroll Instead of Pagination**
+Since the requirements did not specify the total number of records, and the example did not include a paginator, the project uses infinite scroll. This approach ensures:
+- Smooth user experience for navigating large datasets.
+- Efficient data loading by fetching only the required data as the user scrolls.
+
+### **2. Links for PDF Management**
+The task did not specify whether to store PDFs in a database or on the server. As a result, the implementation uses links to PDFs:
+- Keeps the client lightweight and focused.
+- Simplifies file management while maintaining accessibility.
+
+---
+
+## **How to Use**
+1. **Filters**:
+   - Search by invoice name or supplier name.
+   - Select a date range to narrow results.
+2. **Infinite Scrolling**:
+   - Scroll down the table to load more invoices automatically.
+3. **PDF Links**:
+   - Click on the invoice link to view or download the PDF.
+---
